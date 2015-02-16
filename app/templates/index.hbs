@@ -1,0 +1,42 @@
+<div class="row full-width">
+    <div class="small-offset-3 small-9 small-centered columns text-center">
+        <h1 class="page-title">Charty</h1>
+    </div>
+</div>
+
+<div class="row full-width">
+    <div class="small-3 columns">
+        <ul>
+            {{#each controller}}
+              <li>
+                  <div class="switch my-switch">
+                      {{input type="checkbox" checked=this.selected id=this.symbol}}
+                      <label class="checkbox-slider" {{bind-attr for=this.symbol}}></label>
+                      <span class="checkbox-label" style="color: {{unbound this.color}}">{{this.symbol}}</span>
+                  </div>
+              </li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="small-9 columns">
+        <svg class='chart-svg' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0"
+            {{bind-attr viewBox=view.viewBox}} height="100%" width="100%" preserveAspectRatio="xMinYMin">
+
+            <g class="my-chart" {{bind-attr transform=view.chartTranslate}}>
+                <g class="x axis"></g>
+                <g class="y axis"></g>
+
+                {{#each selectedData}}
+                    {{line-plot selectedType=controller.selectedType color=this.color data=this.data domainFunc=view.domainFunc valueFunc=view.valueFunc}}
+                {{/each}}
+            </g>
+        </svg>
+    </div>
+</div>
+
+<div class="row full-width">
+    <div class="small-offset-3 small-9 small-centered columns text-centered">
+        {{view "select" content=selectedTypes value=selectedType}}
+    </div>
+</div>

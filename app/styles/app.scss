@@ -1,0 +1,30 @@
+@import "settings";
+
+@import "foundation";
+
+.page-title {
+    margin: 25px 0;
+}
+
+.row.full-width {
+    width: 85%;
+    max-width: 85%;
+}
+
+ul {
+    position: relative;
+    top: 50px;
+
+    list-style: none;
+
+    .switch {
+        label {
+            position: relative;
+            top: 10px;
+        }
+    }
+}
+.data-plot {
+    fill: none;
+    stroke-width: 5;
+}
